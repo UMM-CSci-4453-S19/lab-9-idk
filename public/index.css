@@ -1,0 +1,103 @@
+div.priceColumn{
+    position:fixed;
+    right:0;
+    top: 20px;
+    padding-right:1cm;
+    width: 400px;
+    height:100%;
+}
+div.priceList {
+    height: 80%;
+    background-color:rgb(192,192,192);
+    border:2px solid black;
+    right-margin:1cm;
+    font-size:14pt;
+    height:80%;
+    padding-left: 10px;
+    padding-right:10px;
+    padding-top:10px;
+}
+
+div.errorMsg{
+    position:fixed;height:50px;bottom:0px;left:0px;right:0px;margin-bottom:0px;
+    font-size:12pt;
+}
+
+div.buttonHolder{
+    font-size:14pt;
+}
+
+table.itemTable{
+    width:100%;
+}
+
+table.itemTable tr:nth-child(odd) td{
+    background-color:rgb(200,200,200);
+}
+
+table.itemTable tr:hover td{
+    cursor:pointer;
+//  cursor:url('https://openclipart.org/image/250px/svg_to_png/68/Andy-Trash-Can.png');
+    background-color:#f99;
+}
+
+td.priceCell{
+    text-align:right;
+    font-family:monospace;
+}
+
+td.amountCell{
+    text-align:right;
+    font-family:monospace;
+}
+div.totalRow{
+    font-size:20pt;
+    font-weight:bold;
+    background-color:#afa;
+    border:2px solid black:
+}
+.totalValue{
+    float:right;
+    text-align:right;
+    padding-right:5px;
+}
+.itemButton{
+    width:100px;
+    height:40px;
+}
+
+
+/*.priceColumn {*/
+    /*width: 30%;*/
+    /*padding:60%;*/
+/*}*/
+
+/*#priceColumn {*/
+    /*background: white;*/
+    /*margin: 0 1em;*/
+    /*padding: 1em;*/
+    /*box-shadow: 0 0 5px rgba(0,0,0,.25);*/
+/*}*/
+
+/*#priceColumn h3 {*/
+    /*text-align:center;*/
+/*}*/
+
+/*#priceColumn table {*/
+    /*font-family: monospace;*/
+    /*width: 100%;*/
+    /*border-collapse: collapse;*/
+/*}*/
+
+/*#priceColumn td, #ticket th {*/
+    /*padding: 5px;*/
+/*}*/
+/*#priceColumn th {*/
+    /*text-align: left;*/
+/*}*/
+/*#priceColumn td, #priceColumn #total {*/
+    /*text-align: right;*/
+/*}*/
+/*#priceColumn tfoot th {*/
+    /*border-top: 1px solid black;*/
+/*}*/

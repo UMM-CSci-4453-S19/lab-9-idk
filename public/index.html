@@ -1,14 +1,17 @@
 <!doctype html>
 <html>
 <head lang="en">
+
     <meta charset="utf-8">
     <title>Cash Register</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script>
     <script src="click.js"></script>
+    <link rel="stylesheet" href="./index.css">
 </head>
 <body ng-app="buttons">
 <div class="container-fluid">
+
     <h1>Cash Register (with buttons)</h1>
     <div id="buttons" ng-controller="buttonCtrl" >
        <div ng-repeat="button in buttons">
@@ -20,6 +23,39 @@
          </div>
        </div>
      </div>
+    <div id="priceColumn" class="priceColumn">
+        <h3>Items</h3>
+        <div id="priceList" class="priceList">
+            <TABLE class="itemTable">
+                <TR ng-repeat="item in list" ng-click="rowClick($event)"  id="{{item.id+100}}">
+                    <TD>{{item.name}}</TD><td class="amountCell">{{item.amount}}</td><td class="priceCell">${{item.cost}}</td>
+                </tr>
+            </TABLE>
+        </div>
+        <div id="totalRow" class="totalRow">
+            <span class="totalHeader">Total:</span><span class="totalValue">${{sum(list,'cost')}}</span>
+        </div>
+    </div>
+
+        <!--<h3>Items</h3>-->
+        <!--<div id="priceList" class="priceList">-->
+            <!--<table class="itemTable">-->
+                <!--<tbody>-->
+                    <!--<div ng-repeat="item in list">-->
+
+                    <!--</div>-->
+                <!--</tbody>-->
+                <!--<tfoot>-->
+                <!--<tr>-->
+                    <!--<th>Total: </th>-->
+                    <!--<th id="total">$0.00</th>-->
+                <!--</tr>-->
+                <!--</tfoot>-->
+            <!--</table>-->
+        <!--</div>-->
+
+    </div>
+    <!--<div style="position:absolute;left:320px;top:100px"><button id="1">food</button></div>-->
 </div>
 </body>
 </html>

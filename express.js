@@ -13,8 +13,8 @@ app.get("/buttons",function(req,res){
   var result = DBF.query(mysql.format(sql));
 
   //Use the .then stuff to make everything better
-  result.then(function(result, error) {
-      res.send(result);
+  result.then(function(bts, error) {
+      res.send(bts);
   })
 
 });
@@ -26,11 +26,15 @@ app.get("/click",function(req,res){
 
   var result = DBF.query(mysql.format(sql));
 
-  result.then(function(result, error) {
-      res.send(result);
+  result.then(function(price, error) {
+      res.send(price);
   })
 
 });
-// Your other API handlers go here!
+
+app.get("/list",function (req,res) {
+    var id = req.param('id');
+    var sql = 'update cart set item='+id;//this isn't right yet
+})
 
 app.listen(port);
