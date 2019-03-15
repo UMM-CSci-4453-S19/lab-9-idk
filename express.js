@@ -13,16 +13,16 @@ app.get("/buttons",function(req,res){
   var result = DBF.query(mysql.format(sql));
 
   //Use the .then stuff to make everything better
-  result.then(function(bts, error) {
-      res.send(bts);
+  result.then(function(result, error) {
+      res.send(result);
   })
 
 });
 
 app.get("/click",function(req,res){
   var id = req.param('id');
-  var sql = 'select price from forever_alone.prices where prices.id=' + id;
-  console.log("Attempting sql ->"+sql+"<-");
+  var sql = 'insert into forever_alone.cart values('+id+', 1) on duplicate key update amount=amount+1;';
+  // console.log("Attempting sql ->"+sql+"<-");
 
   var result = DBF.query(mysql.format(sql));
 
@@ -33,8 +33,27 @@ app.get("/click",function(req,res){
 });
 
 app.get("/list",function (req,res) {
+    var sql = 'select invID as id, item as name, cart.amount, price*cart.amount as cost ' +
+        'from forever_alone.inventory, forever_alone.cart, forever_alone.prices ' +
+        'where inventory.id=invID and prices.id=invID;';
+    var result = DBF.query(mysql.format(sql));
+
+    result.then(function(items, error) {
+        res.send(items);
+    })
+});
+
+app.get("/delete",function (req,res) {
     var id = req.param('id');
-    var sql = 'update cart set item='+id;//this isn't right yet
+    var sql = 'delete from forever_alone.cart where invID='+id;
+    var result = DBF.query(mysql.format(sql));
+
+    // console.log("Attempting sql ->"+sql+"<-");
+
+    result.then(function(items, error) {
+        res.send('');
+    });
+
 })
 
 app.listen(port);

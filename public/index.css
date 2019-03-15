@@ -1,3 +1,11 @@
+body{
+    font-family: monospace;
+}
+
+#priceColumn h3 {
+    text-align:center;
+}
+
 div.priceColumn{
     position:fixed;
     right:0;
@@ -37,7 +45,7 @@ table.itemTable tr:nth-child(odd) td{
 
 table.itemTable tr:hover td{
     cursor:pointer;
-//  cursor:url('https://openclipart.org/image/250px/svg_to_png/68/Andy-Trash-Can.png');
+    /*cursor:url('https://openclipart.org/image/250px/svg_to_png/68/Andy-Trash-Can.png');*/
     background-color:#f99;
 }
 
@@ -53,7 +61,7 @@ td.amountCell{
 div.totalRow{
     font-size:20pt;
     font-weight:bold;
-    background-color:#afa;
+    background-color: lavender;
     border:2px solid black:
 }
 .totalValue{
@@ -65,39 +73,3 @@ div.totalRow{
     width:100px;
     height:40px;
 }
-
-
-/*.priceColumn {*/
-    /*width: 30%;*/
-    /*padding:60%;*/
-/*}*/
-
-/*#priceColumn {*/
-    /*background: white;*/
-    /*margin: 0 1em;*/
-    /*padding: 1em;*/
-    /*box-shadow: 0 0 5px rgba(0,0,0,.25);*/
-/*}*/
-
-/*#priceColumn h3 {*/
-    /*text-align:center;*/
-/*}*/
-
-/*#priceColumn table {*/
-    /*font-family: monospace;*/
-    /*width: 100%;*/
-    /*border-collapse: collapse;*/
-/*}*/
-
-/*#priceColumn td, #ticket th {*/
-    /*padding: 5px;*/
-/*}*/
-/*#priceColumn th {*/
-    /*text-align: left;*/
-/*}*/
-/*#priceColumn td, #priceColumn #total {*/
-    /*text-align: right;*/
-/*}*/
-/*#priceColumn tfoot th {*/
-    /*border-top: 1px solid black;*/
-/*}*/

@@ -22,37 +22,20 @@
            <h3 class="text-danger">{{errorMessage}}</h3>
          </div>
        </div>
+        <div id="priceColumn" class="priceColumn">
+            <h3>Items</h3>
+            <div id="priceList" class="priceList">
+                <TABLE class="itemTable">
+                    <TR ng-repeat="item in cart" ng-click="rowClick($event)"  id="{{item.id+100}}">
+                        <TD>{{item.name}}</TD><td class="amountCell">{{item.amount}}</td><td class="priceCell">${{item.cost}}</td>
+                    </tr>
+                </TABLE>
+            </div>
+            <div id="totalRow" class="totalRow">
+                <span class="totalHeader">Total:</span><span class="totalValue">${{total(cart,'cost')}}</span>
+            </div>
+        </div>
      </div>
-    <div id="priceColumn" class="priceColumn">
-        <h3>Items</h3>
-        <div id="priceList" class="priceList">
-            <TABLE class="itemTable">
-                <TR ng-repeat="item in list" ng-click="rowClick($event)"  id="{{item.id+100}}">
-                    <TD>{{item.name}}</TD><td class="amountCell">{{item.amount}}</td><td class="priceCell">${{item.cost}}</td>
-                </tr>
-            </TABLE>
-        </div>
-        <div id="totalRow" class="totalRow">
-            <span class="totalHeader">Total:</span><span class="totalValue">${{sum(list,'cost')}}</span>
-        </div>
-    </div>
-
-        <!--<h3>Items</h3>-->
-        <!--<div id="priceList" class="priceList">-->
-            <!--<table class="itemTable">-->
-                <!--<tbody>-->
-                    <!--<div ng-repeat="item in list">-->
-
-                    <!--</div>-->
-                <!--</tbody>-->
-                <!--<tfoot>-->
-                <!--<tr>-->
-                    <!--<th>Total: </th>-->
-                    <!--<th id="total">$0.00</th>-->
-                <!--</tr>-->
-                <!--</tfoot>-->
-            <!--</table>-->
-        <!--</div>-->
 
     </div>
     <!--<div style="position:absolute;left:320px;top:100px"><button id="1">food</button></div>-->
