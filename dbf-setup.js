@@ -7,7 +7,6 @@ Promise.promisifyAll(require("mysql/lib/Connection").prototype);
 Promise.promisifyAll(require("mysql/lib/Pool").prototype);
 
 credentials.host="ids.morris.umn.edu"; //setup database credentials
-var connection = mysql.createConnection(credentials);
 
 var pool = mysql.createPool(credentials); //Setup the pool using our credentials.
 

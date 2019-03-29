@@ -13,6 +13,11 @@
 <div class="container-fluid">
 
     <h1>Cash Register (with buttons)</h1>
+    <div style="position: relative;left:10px;top:10px">
+        <button id="log_in" ng-click="loginClick($event, user.name);">log in</button>
+        <button id="log_out" ng-click="logoutClick($event);">log out</button>
+    </div>
+
     <div id="buttons" ng-controller="buttonCtrl" >
        <div ng-repeat="button in buttons">
          <div style="position:absolute;left:{{button.left_pos}}px;top:{{button.top}}px"><button id="{{button.invID}}" ng-click="buttonClick($event,'button.invID');" >{{button.label}}</button></div>
@@ -38,7 +43,29 @@
      </div>
 
     </div>
-    <!--<div style="position:absolute;left:320px;top:100px"><button id="1">food</button></div>-->
+
+    <!--<script type="text/ng-template" id="login.html">-->
+        <!--<div class="col-md-12">-->
+            <!--<h3>Login Page</h3>-->
+
+            <!--<form ng-submit="formSubmit()" class="form">-->
+                <!--<div class="col-md-4">-->
+                    <!--<div class="form-group">-->
+                        <!--<input type="text" class="form-control" ng-model="username" placeholder="username" required=""/>-->
+                    <!--</div>-->
+
+                    <!--<div class="form-group">-->
+                        <!--<button type="submit" class="btn btn-success">Login</button>-->
+                        <!--<span class="text-danger">{{ error }}</span>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+            <!--</form>-->
+        <!--</div>-->
+    <!--</script>-->
+
+    </div>
+
 </div>
 </body>
 </html>

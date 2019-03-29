@@ -50,10 +50,20 @@ app.get("/delete",function (req,res) {
 
     // console.log("Attempting sql ->"+sql+"<-");
 
-    result.then(function(items, error) {
+    result.then(function(error) {
         res.send('');
     });
 
+});
+
+app.get("/login", function (req,res) {
+    var user = req.param('user');
+    var sql = 'select user from users where user='+user;
+    var result = DBF.query(mysql.format(sql));
+
+    result.then(function(user, error){
+        res.send(user);
+    })
 })
 
 app.listen(port);

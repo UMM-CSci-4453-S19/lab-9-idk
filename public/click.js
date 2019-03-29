@@ -6,6 +6,8 @@ angular.module('buttons',[])
 function ButtonCtrl($scope,registerApi){
    $scope.buttons=[]; //Initially all was still
    $scope.cart=[];
+   $scope.user='';
+   $scope.loggedIn=false;
 
    $scope.errorMessage='';
    $scope.isLoading=isLoading;
@@ -13,6 +15,7 @@ function ButtonCtrl($scope,registerApi){
    $scope.refreshCart=refreshCart;
    $scope.rowClick=rowClick;
    $scope.buttonClick=buttonClick;
+   $scope.logIn=logIn;
    $scope.total = function(items,prop){return (items.reduce(function(a,b){return Number(a)+Number(b[prop]);},0)).toFixed(2);};
 
 
@@ -55,11 +58,26 @@ function ButtonCtrl($scope,registerApi){
   }
 
   function rowClick($event) {
+      loading = true;
       $scope.errorMessage='';
       registerApi.clickRow($event.srcElement.parentElement.id-100)
           .success(function(){ refreshCart() })
           .error(function(){
               $scope.errorMessage = "Unable to delete item from cart: Database request failed";
+          })
+  }
+  
+  function logIn($event) {
+      loading = true;
+      $scope.errorMessage='';
+      registerApi.clickLogIn($event.srcElement.parentElement)
+          .success(function (name) {
+              $scope.user = name;
+              $scope.loggedIn = true;
+              loading = false;
+          })
+          .error(function () {
+              $scope.errorMessage = "Invalid username";
           })
   }
 
@@ -85,6 +103,10 @@ function registerApi($http,apiUrl){
     clickRow: function (id) {
         var url = apiUrl+'/delete?id='+id;
         console.log('attempting to delete item'+id);
+        return $http.get(url);
+    },
+    clickLogIn: function (user) {
+        var url = apiUrl+'/login?user='+user;
         return $http.get(url);
     }
   };
