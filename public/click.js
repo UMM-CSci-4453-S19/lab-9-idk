@@ -68,9 +68,10 @@ function ButtonCtrl($scope,registerApi){
   }
   
   function logIn($event) {
+      console.log('reached method front');
       loading = true;
       $scope.errorMessage='';
-      registerApi.clickLogIn($event.srcElement.parentElement)
+      registerApi.clickLogIn($event.target.id)
           .success(function (name) {
               $scope.user = name;
               $scope.loggedIn = true;
@@ -105,8 +106,8 @@ function registerApi($http,apiUrl){
         console.log('attempting to delete item'+id);
         return $http.get(url);
     },
-    clickLogIn: function (user) {
-        var url = apiUrl+'/login?user='+user;
+    clickLogIn: function (name) {
+        var url = apiUrl+'/user?='+name;
         return $http.get(url);
     }
   };

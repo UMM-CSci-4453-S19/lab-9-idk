@@ -13,9 +13,10 @@
 <div class="container-fluid">
 
     <h1>Cash Register (with buttons)</h1>
-    <div style="position: relative;left:10px;top:10px">
-        <button id="log_in" ng-click="loginClick($event, user.name);">log in</button>
-        <button id="log_out" ng-click="logoutClick($event);">log out</button>
+    <div style="position: relative;left:10px;top:500px">
+
+        <button id="log_in" ng-click="logIn($event);">log in</button>
+        <button id="log_out" ng-click="logOut($event);">log out</button>
     </div>
 
     <div id="buttons" ng-controller="buttonCtrl" >

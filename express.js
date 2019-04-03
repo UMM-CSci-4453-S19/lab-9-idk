@@ -56,10 +56,12 @@ app.get("/delete",function (req,res) {
 
 });
 
-app.get("/login", function (req,res) {
+app.get("/user", function (req,res) {
     var user = req.param('user');
-    var sql = 'select user from users where user='+user;
+    var sql = 'select username from forever_alone.users where username="'+user+'"';
     var result = DBF.query(mysql.format(sql));
+
+    console.log("Attempting sql ->"+sql+"<-");
 
     result.then(function(user, error){
         res.send(user);
