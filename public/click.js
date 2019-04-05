@@ -15,6 +15,7 @@ function ButtonCtrl($scope,registerApi){
    $scope.refreshCart=refreshCart;
    $scope.rowClick=rowClick;
    $scope.buttonClick=buttonClick;
+   $scope.voidClick=voidClick;
    $scope.logIn=logIn;
    $scope.total = function(items,prop){return (items.reduce(function(a,b){return Number(a)+Number(b[prop]);},0)).toFixed(2);};
 
@@ -66,6 +67,16 @@ function ButtonCtrl($scope,registerApi){
               $scope.errorMessage = "Unable to delete item from cart: Database request failed";
           })
   }
+
+  function voidClick() {
+      loading = true;
+      $scope.errorMessage='';
+      registerApi.clickVoid()
+          .success(function(){ refreshCart() })
+          .error(function(){
+              $scope.errorMessage = "Unable to void transaction";
+          })
+  }
   
   function logIn($event) {
       console.log('reached method front');
@@ -108,6 +119,10 @@ function registerApi($http,apiUrl){
     },
     clickLogIn: function (name) {
         var url = apiUrl+'/user?='+name;
+        return $http.get(url);
+    },
+    clickVoid: function () {
+        var url = apiUrl+'/void';
         return $http.get(url);
     }
   };

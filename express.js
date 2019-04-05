@@ -21,8 +21,6 @@ app.get("/buttons",function(req,res){
 
 app.get("/click",function(req,res){
   var id = req.param('id');
-  var time = Date(Date.now());
-  console.log(time);
   var sql = 'insert into forever_alone.cart values('+id+', 1, now()) on duplicate key update amount=amount+1, time=now();';
 
   var result = DBF.query(mysql.format(sql));
@@ -67,6 +65,15 @@ app.get("/user", function (req,res) {
     result.then(function(user, error){
         res.send(user);
     })
-})
+});
+
+app.get("/void", function(req,res){
+    var sql = 'truncate forever_alone.cart;'
+    var result = DBF.query(mysql.format(sql));
+
+    result.then(function(error){
+        res.send('');
+    })
+});
 
 app.listen(port);
