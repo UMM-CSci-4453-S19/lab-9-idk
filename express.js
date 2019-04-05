@@ -76,4 +76,13 @@ app.get("/void", function(req,res){
     })
 });
 
+app.get("/users", function(req,res){
+    var sql = 'select * from forever_alone.users;'
+    var result = DBF.query(mysql.format(sql));
+
+    result.then(function(names,error){
+        res.send(names);
+    })
+})
+
 app.listen(port);

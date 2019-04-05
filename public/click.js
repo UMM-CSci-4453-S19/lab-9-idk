@@ -6,6 +6,7 @@ angular.module('buttons',[])
 function ButtonCtrl($scope,registerApi){
    $scope.buttons=[]; //Initially all was still
    $scope.cart=[];
+   $scope.users=[];
    $scope.user='';
    $scope.loggedIn=false;
 
@@ -93,6 +94,20 @@ function ButtonCtrl($scope,registerApi){
           })
   }
 
+  function loadUsers() {
+      loading = true;
+      $scope.errorMessage='';
+      registerApi.usersLoad()
+          .success(function(names){
+              $scope.users = names;
+              loading = false;
+          })
+          .error(function(){
+              $scope.errorMessage = "Unable to load user names";
+          })
+  }
+
+  loadUsers(); //make sure the user names are loaded
   refreshCart(); //make sure the cart is loaded
   refreshButtons();  //make sure the buttons are loaded
 }
@@ -123,6 +138,10 @@ function registerApi($http,apiUrl){
     },
     clickVoid: function () {
         var url = apiUrl+'/void';
+        return $http.get(url);
+    },
+    usersLoad: function() {
+        var url = apiUrl+'/users';
         return $http.get(url);
     }
   };
