@@ -21,8 +21,9 @@ app.get("/buttons",function(req,res){
 
 app.get("/click",function(req,res){
   var id = req.param('id');
-  var sql = 'insert into forever_alone.cart values('+id+', 1) on duplicate key update amount=amount+1;';
-  // console.log("Attempting sql ->"+sql+"<-");
+  var time = Date(Date.now());
+  console.log(time);
+  var sql = 'insert into forever_alone.cart values('+id+', 1, now()) on duplicate key update amount=amount+1, time=now();';
 
   var result = DBF.query(mysql.format(sql));
 
