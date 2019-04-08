@@ -29,7 +29,10 @@
 
         <div style="position: relative;left:10px;top:500px">
 
-            <button id="log_in" ng-click="logIn($event);">log in</button>
+            <select ng-model="selectedName" ng-options="x.username for x in users">
+            </select>
+
+            <button id="log_in" ng-click="logIn($event, selectedName.username);">log in</button>
             <button id="log_out" ng-click="logOut($event);">log out</button>
         </div>
 
@@ -37,7 +40,7 @@
             <h3>Items</h3>
             <div id="priceList" class="priceList">
                 <TABLE class="itemTable">
-                    <TR ng-repeat="item in cart" ng-click="rowClick($event)"  id="{{item.id+100}}">
+                    <TR ng-repeat="item in cart" ng-click="rowClick($event, item.id)"  id="{{item.id+100}}">
                         <TD>{{item.name}}</TD><td class="amountCell">{{item.amount}}</td><td class="priceCell">${{item.cost}}</td>
                     </tr>
                 </TABLE>

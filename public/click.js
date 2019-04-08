@@ -59,10 +59,10 @@ function ButtonCtrl($scope,registerApi){
           })
   }
 
-  function rowClick($event) {
+  function rowClick($event, itemID) {
       loading = true;
       $scope.errorMessage='';
-      registerApi.clickRow($event.srcElement.parentElement.id-100)
+      registerApi.clickRow(itemID) // $event.srcElement.parentElement.id-100)
           .success(function(){ refreshCart() })
           .error(function(){
               $scope.errorMessage = "Unable to delete item from cart: Database request failed";
@@ -79,19 +79,21 @@ function ButtonCtrl($scope,registerApi){
           })
   }
   
-  function logIn($event) {
-      console.log('reached method front');
+  function logIn($event, loginName) {
       loading = true;
       $scope.errorMessage='';
-      registerApi.clickLogIn($event.target.id)
-          .success(function (name) {
-              $scope.user = name;
-              $scope.loggedIn = true;
-              loading = false;
-          })
-          .error(function () {
-              $scope.errorMessage = "Invalid username";
-          })
+      $scope.user=loginName;
+      $scope.loggedIn = true;
+      loading=false;
+      // registerApi.clickLogIn(loginName) // $event.target.id)
+      //     .success(function (name) {
+      //         $scope.user = name;
+      //         $scope.loggedIn = true;
+      //         loading = false;
+      //     })
+      //     .error(function () {
+      //         $scope.errorMessage = "Invalid username";
+      //     })
   }
 
   function loadUsers() {

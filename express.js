@@ -47,25 +47,23 @@ app.get("/delete",function (req,res) {
     var sql = 'delete from forever_alone.cart where invID='+id;
     var result = DBF.query(mysql.format(sql));
 
-    // console.log("Attempting sql ->"+sql+"<-");
-
     result.then(function(error) {
         res.send('');
     });
 
 });
 
-app.get("/user", function (req,res) {
-    var user = req.param('user');
-    var sql = 'select username from forever_alone.users where username="'+user+'"';
-    var result = DBF.query(mysql.format(sql));
-
-    console.log("Attempting sql ->"+sql+"<-");
-
-    result.then(function(user, error){
-        res.send(user);
-    })
-});
+// app.get("/user", function (req,res) {
+//     var user = req.param('user');
+//     var sql = 'select username from forever_alone.users where username="'+user+'"';
+//     var result = DBF.query(mysql.format(sql));
+//
+//     console.log("Attempting sql ->"+sql+"<-");
+//
+//     result.then(function(user, error){
+//         res.send(user);
+//     })
+// });
 
 app.get("/void", function(req,res){
     var sql = 'truncate forever_alone.cart;'
@@ -77,7 +75,7 @@ app.get("/void", function(req,res){
 });
 
 app.get("/users", function(req,res){
-    var sql = 'select * from forever_alone.users;'
+    var sql = 'select username from forever_alone.users;'
     var result = DBF.query(mysql.format(sql));
 
     result.then(function(names,error){
