@@ -14,34 +14,51 @@
 
     <h1>Cash Register (with buttons)</h1>
 
-    <div id="buttons" ng-controller="buttonCtrl" >
-       <div ng-repeat="button in buttons">
-         <div style="position:absolute;left:{{button.left_pos}}px;top:{{button.top}}px"><button id="{{button.invID}}" ng-click="buttonClick($event,'button.invID');" >{{button.label}}</button></div>
-       </div>
-       <div style="position:fixed;height:50px;bottom:0px;left:0px;right:0px;margin-bottom:0px" ng-show="errorMessage != ''">
-          <div class="col-sm-12">
-           <h3 class="text-danger">{{errorMessage}}</h3>
-         </div>
-       </div>
+    <div id="buttons" ng-controller="buttonCtrl">
+        <div ng-if="loggedIn">
+            <div ng-repeat="button in buttons">
+                <div style="position:absolute;left:{{button.left_pos}}px;top:{{button.top}}px">
+
+                    <button id="{{button.invID}}" ng-click="buttonClick($event,'button.invID');">
+                        {{button.label}}
+                    </button>
+
+                </div>
+            </div>
+        </div>
+        <div style="position:fixed;height:50px;bottom:0px;left:0px;right:0px;margin-bottom:0px"
+             ng-show="errorMessage != ''">
+            <div class="col-sm-12">
+                <h3 class="text-danger">{{errorMessage}}</h3>
+            </div>
+        </div>
 
 
-        <div style="position:absolute;left:10px;top:300px;"><button ng-click="voidClick();">void</button></div>
+        <div style="position:absolute;left:10px;top:300px;" ng-if="loggedIn">
+            <button ng-click="voidClick();">void</button>
+        </div>
 
         <div style="position: relative;left:10px;top:500px">
 
-            <select ng-model="selectedName" ng-options="x.username for x in users">
-            </select>
+            <div ng-if="!loggedIn">
+                <select ng-model="selectedName" ng-options="x.username for x in users">
+                </select>
+                <button id="log_in" ng-click="logIn($event, selectedName.username);">log in</button>
+            </div>
 
-            <button id="log_in" ng-click="logIn($event, selectedName.username);">log in</button>
-            <button id="log_out" ng-click="logOut($event);">log out</button>
+            <div ng-if="loggedIn">
+                <button id="log_out" ng-click="logOut();">log out</button>
+            </div>
         </div>
 
         <div id="priceColumn" class="priceColumn">
             <h3>Items</h3>
             <div id="priceList" class="priceList">
                 <TABLE class="itemTable">
-                    <TR ng-repeat="item in cart" ng-click="rowClick($event, item.id)"  id="{{item.id+100}}">
-                        <TD>{{item.name}}</TD><td class="amountCell">{{item.amount}}</td><td class="priceCell">${{item.cost}}</td>
+                    <TR ng-repeat="item in cart" ng-click="rowClick($event, item.id)" id="{{item.id+100}}">
+                        <TD>{{item.name}}</TD>
+                        <td class="amountCell">{{item.amount}}</td>
+                        <td class="priceCell">${{item.cost}}</td>
                     </tr>
                 </TABLE>
             </div>
@@ -49,31 +66,31 @@
                 <span class="totalHeader">Total:</span><span class="totalValue">${{total(cart,'cost')}}</span>
             </div>
         </div>
-     </div>
-
     </div>
 
-    <!--<script type="text/ng-template" id="login.html">-->
-        <!--<div class="col-md-12">-->
-            <!--<h3>Login Page</h3>-->
+</div>
 
-            <!--<form ng-submit="formSubmit()" class="form">-->
-                <!--<div class="col-md-4">-->
-                    <!--<div class="form-group">-->
-                        <!--<input type="text" class="form-control" ng-model="username" placeholder="username" required=""/>-->
-                    <!--</div>-->
+<!--<script type="text/ng-template" id="login.html">-->
+<!--<div class="col-md-12">-->
+<!--<h3>Login Page</h3>-->
 
-                    <!--<div class="form-group">-->
-                        <!--<button type="submit" class="btn btn-success">Login</button>-->
-                        <!--<span class="text-danger">{{ error }}</span>-->
-                    <!--</div>-->
+<!--<form ng-submit="formSubmit()" class="form">-->
+<!--<div class="col-md-4">-->
+<!--<div class="form-group">-->
+<!--<input type="text" class="form-control" ng-model="username" placeholder="username" required=""/>-->
+<!--</div>-->
 
-                <!--</div>-->
-            <!--</form>-->
-        <!--</div>-->
-    <!--</script>-->
+<!--<div class="form-group">-->
+<!--<button type="submit" class="btn btn-success">Login</button>-->
+<!--<span class="text-danger">{{ error }}</span>-->
+<!--</div>-->
 
-    </div>
+<!--</div>-->
+<!--</form>-->
+<!--</div>-->
+<!--</script>-->
+
+</div>
 
 </div>
 </body>

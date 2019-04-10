@@ -18,6 +18,7 @@ function ButtonCtrl($scope,registerApi){
    $scope.buttonClick=buttonClick;
    $scope.voidClick=voidClick;
    $scope.logIn=logIn;
+   $scope.logOut=logOut;
    $scope.total = function(items,prop){return (items.reduce(function(a,b){return Number(a)+Number(b[prop]);},0)).toFixed(2);};
 
 
@@ -94,6 +95,14 @@ function ButtonCtrl($scope,registerApi){
       //     .error(function () {
       //         $scope.errorMessage = "Invalid username";
       //     })
+  }
+
+  function logOut() {
+      loading = true;
+      $scope.errorMessage='';
+      $scope.user='';
+      $scope.loggedIn = false;
+      loading=false;
   }
 
   function loadUsers() {
