@@ -19,6 +19,7 @@ function ButtonCtrl($scope,registerApi){
    $scope.voidClick=voidClick;
    $scope.logIn=logIn;
    $scope.logOut=logOut;
+   $scope.saleClick=saleClick;
    $scope.total = function(items,prop){return (items.reduce(function(a,b){return Number(a)+Number(b[prop]);},0)).toFixed(2);};
 
 
@@ -38,6 +39,7 @@ function ButtonCtrl($scope,registerApi){
       .error(function () {
           $scope.errorMessage="Unable to load Buttons:  Database request failed";
           loading=false;
+
       });
  }
   function buttonClick($event){
@@ -55,7 +57,8 @@ function ButtonCtrl($scope,registerApi){
               $scope.cart = data;
               loading = false;
           })
-          .error(function () {
+          .error(function (
+) {
               $scope.errorMessage = "Unable to load Cart: Database request failed";
           })
   }
@@ -118,6 +121,19 @@ function ButtonCtrl($scope,registerApi){
           })
   }
 
+  function saleClick($event){
+      loading = true;
+      $scope.errorMessage='';
+      registerApi.clickSale($scope.user)
+          .success(function(){
+              refreshCart();
+              loading = false;
+          })
+          .error(function(){
+              $scope.errorMessage = "Unable to record sale";
+          })
+  }
+
   loadUsers(); //make sure the user names are loaded
   refreshCart(); //make sure the cart is loaded
   refreshButtons();  //make sure the buttons are loaded
@@ -143,10 +159,14 @@ function registerApi($http,apiUrl){
         console.log('attempting to delete item'+id);
         return $http.get(url);
     },
-    clickLogIn: function (name) {
-        var url = apiUrl+'/user?='+name;
+    clickSale: function (name) {
+        var url = apiUrl+'/user?user='+name;
         return $http.get(url);
     },
+    // clickLogIn: function (name) {
+    //     var url = apiUrl+'/user?='+name;
+    //     return $http.get(url);
+    // },
     clickVoid: function () {
         var url = apiUrl+'/void';
         return $http.get(url);

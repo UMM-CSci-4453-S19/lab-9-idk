@@ -83,4 +83,14 @@ app.get("/users", function(req,res){
     })
 })
 
+app.get("/user", function(req, res){
+    var id = req.param('user');
+    var sql = 'call forever_alone.archiveSale("'+id+'");'
+    var result = DBF.query(mysql.format(sql));
+
+    result.then(function(error){
+        res.send('');
+    })
+})
+
 app.listen(port);
