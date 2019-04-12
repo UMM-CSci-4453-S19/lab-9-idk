@@ -35,7 +35,8 @@ function ButtonCtrl($scope,registerApi){
       .success(function(data){
          $scope.buttons=data;
          loading=false;
-      })
+      })from transactionSummary inner join transaction on transactionSummary.transactionID = transaction.transactionID;
+
       .error(function () {
           $scope.errorMessage="Unable to load Buttons:  Database request failed";
           loading=false;
@@ -44,7 +45,8 @@ function ButtonCtrl($scope,registerApi){
  }
   function buttonClick($event){
      $scope.errorMessage='';
-     registerApi.clickButton($event.target.id)
+     registerApi.clickButtonfrom transactionSummary inner join transaction on transactionSummary.transactionID = transaction.transactionID;
+($event.target.id)
         .success(function(){ refreshCart() })
         .error(function(){$scope.errorMessage="Unable click";});
   }
@@ -83,7 +85,8 @@ function ButtonCtrl($scope,registerApi){
           })
   }
   
-  function logIn($event, loginName) {
+  function logIn($event, logfrom transactionSummary inner join transaction on transactionSummary.transactionID = transaction.transactionID;
+inName) {
       loading = true;
       $scope.errorMessage='';
       $scope.user=loginName;
@@ -125,7 +128,8 @@ function ButtonCtrl($scope,registerApi){
       loading = true;
       $scope.errorMessage='';
       registerApi.clickSale($scope.user)
-          .success(function(){
+          .success(function(from transactionSummary inner join transaction on transactionSummary.transactionID = transaction.transactionID;
+){
               refreshCart();
               loading = false;
           })
@@ -137,7 +141,8 @@ function ButtonCtrl($scope,registerApi){
   loadUsers(); //make sure the user names are loaded
   refreshCart(); //make sure the cart is loaded
   refreshButtons();  //make sure the buttons are loaded
-}
+}from transactionSummary inner join transaction on transactionSummary.transactionID = transaction.transactionID;
+
 
 function registerApi($http,apiUrl){
   return{
@@ -158,9 +163,10 @@ function registerApi($http,apiUrl){
         var url = apiUrl+'/delete?id='+id;
         console.log('attempting to delete item'+id);
         return $http.get(url);
-    },
+    },from transactionSummary inner join transaction on transactionSummary.transactionID = transaction.transactionID;
+
     clickSale: function (name) {
-        var url = apiUrl+'/user?user='+name;
+        var url = apiUrl+'/sale?user='+name;
         return $http.get(url);
     },
     // clickLogIn: function (name) {
@@ -173,6 +179,10 @@ function registerApi($http,apiUrl){
     },
     usersLoad: function() {
         var url = apiUrl+'/users';
+        return $http.get(url);
+    },
+    receipt: function (id) {
+        var url = apiUrl+'/receipt?id='+id;
         return $http.get(url);
     }
   };

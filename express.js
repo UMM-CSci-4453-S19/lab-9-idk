@@ -83,13 +83,23 @@ app.get("/users", function(req,res){
     })
 })
 
-app.get("/user", function(req, res){
+app.get("/sale", function(req, res){
     var id = req.param('user');
     var sql = 'call forever_alone.archiveSale("'+id+'");'
     var result = DBF.query(mysql.format(sql));
 
     result.then(function(error){
         res.send('');
+    })
+})
+
+app.get("/receipt", function (req, res) {
+    var id = req.param("id");
+    var sql= 'select * from forever_alone.transactionSummary inner join forever_alone.transaction on transactionSummary.transactionID = transaction.transactionID;';
+    var result = DBF.query(mysql.format(sql));
+
+    result.then(function (receipt, error) {
+        res.send(receipt);
     })
 })
 
